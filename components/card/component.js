@@ -33,7 +33,7 @@ module.exports = class {
         me.state.words[w.i] = org;
         me.setStateDirty('words');
         me.loopWords(arr);
-      }, 200);
+      }, 250);
     }
   }
 
