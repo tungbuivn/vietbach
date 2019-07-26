@@ -1,6 +1,3 @@
-// const Howler = require('howler');
-const Q = require('q');
-
 module.exports = class {
   onCreate() {
     // console.log(Howler);

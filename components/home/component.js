@@ -49,6 +49,22 @@ module.exports = class {
         key: 'quadua',
         title: 'Quả dứa',
       },
+      {
+        key: 'qualuu',
+        title: 'Quả lựu',
+      },
+      {
+        key: 'quamangcut',
+        title: 'Quả măng cụt',
+      },
+      {
+        key: 'quana',
+        title: 'Quả na',
+      },
+      {
+        key: 'quanho',
+        title: 'Quả nho',
+      },
     ];
     this.state = {
       list: lst.map((o) => {
