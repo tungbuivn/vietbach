@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "angular": true,
+    "document": true,
+    "Howl": true
+  },
+  "rules": {
+    "func-names": 0,
+    "linebreak-style": 0,
+    "class-methods-use-this": 0,
+    "no-console": 0,
+    "import/no-unresolved": 0,
+    "eqeqeq": 0,
+    "no-param-reassign": 0
+  }
+}

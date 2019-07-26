@@ -1,0 +1,22 @@
+<div class="cscard xcc mdl-card mdl-shadow--2dp" on-click("play") on-touchstart("play")>
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">
+      <for|w| of=state.words>
+        <span class=w.bg>${w.word}</span>
+        <span>&nbsp;</span>
+      </for>
+    </h2>
+  </div>
+  <div class="">
+    <img class="himg" src=input.img/>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="btn-sp mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      <span>Phát âm</span>
+      <i class="material-icons">volume_up</i>
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"/>
+  </div>
+</div>
