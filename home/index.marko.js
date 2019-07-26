@@ -19,11 +19,11 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><base href=\"/\">");
+  out.w("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><link rel=\"icon\" type=\"image/jpg\" sizes=\"32x32\" href=\"/favicon.jpg\"><link rel=\"manifest\" href=\"/manifest.json\"><base href=\"/\">");
 
-  lasso_head_tag({}, out, __component, "6");
+  lasso_head_tag({}, out, __component, "8");
 
-  lasso_head_tag({}, out, __component, "7");
+  lasso_head_tag({}, out, __component, "9");
 
   out.w("</head><body>");
 
@@ -35,15 +35,15 @@ function render(input, out, __component, component, state) {
             out.w("<div ng-view></div>");
           }
         }
-    }, out, __component, "9");
+    }, out, __component, "11");
 
-  lasso_body_tag({}, out, __component, "12");
+  lasso_body_tag({}, out, __component, "14");
 
-  lasso_body_tag({}, out, __component, "13");
+  lasso_body_tag({}, out, __component, "15");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "14");
+  await_reorderer_tag({}, out, __component, "16");
 
   out.w("</body></html>");
 }

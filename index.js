@@ -74,6 +74,9 @@ const app = express();
 // app.use(markoExpress()); //enable res.marko(template, data)
 app.use(require('lasso/middleware').serveStatic());
 
+app.use('/favicon.jpg', express.static('./favicon.jpg'));
+app.use('/manifest.json', express.static('./manifest.json'));
+
 app.use('/images', express.static('./images'));
 app.use('/sounds', express.static('./sounds'));
 

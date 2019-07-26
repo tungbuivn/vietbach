@@ -1,0 +1,20 @@
+{
+  "short_name": "Tập đọc",
+  "name": "Tập đọc",
+  "icons": [
+    {
+      "src": "/favicon.jpg",
+      "type": "image/jpg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/favicon.jpg",
+      "type": "image/jpg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/home",
+
+  "display": "standalone",
+  "scope": "/"
+}
