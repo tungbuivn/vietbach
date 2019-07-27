@@ -1,3 +1,5 @@
+const Q = require('q');
+
 module.exports = class {
   onCreate() {
     // console.log(Howler);
@@ -6,6 +8,7 @@ module.exports = class {
       count: 0,
       sound: null,
       words: [],
+      isPlaying: false,
     };
   }
 
@@ -21,21 +24,26 @@ module.exports = class {
     const me = this;
     if (arr.length) {
       const w = arr.shift();
-      console.log(w, 'xxxxxxxx');
+      // console.log(w, 'xxxxxxxx');
       const org = Object.assign({}, w);
       w.bg = 'hl';
       me.state.words[w.i] = w;
       me.setStateDirty('words');
-      setTimeout(() => {
-        me.state.words[w.i] = org;
-        me.setStateDirty('words');
-        me.loopWords(arr);
-      }, 300);
+      return Q.Promise((resolve) => {
+        setTimeout(() => {
+          me.state.words[w.i] = org;
+          me.setStateDirty('words');
+          return me.loopWords(arr).then(() => resolve());
+        }, 300);
+      });
     }
+    return Q.resolve();
   }
 
   play() {
     const me = this;
+    if (me.isPlaying) return;
+    me.isPlaying = true;
     // me.count = 0;
     if (!me.sound) {
       me.state.sound = new Howl({
@@ -47,7 +55,10 @@ module.exports = class {
     } else {
       me.state.sound.play();
     }
-    this.loopWords([].concat(this.state.words));
+
+    this.loopWords([].concat(this.state.words)).then(() => {
+      me.isPlaying = false;
+    });
 
     // console.log('XXXXXXXXXXXXXXXXX', me.count);
     // if (me.state.count == 1) {

@@ -86,6 +86,21 @@ app.get('*', (req, res) => {
   home.render({}, res);
 });
 
+const Q = require('q');
+
+function sleep(tm) {
+  return Q.Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, tm);
+  });
+}
+async function doneNhe() {
+  await sleep(5000);
+}
+
+Q.fcall(doneNhe).then(() => console.error('done nhe'));
+
 app.listen(3000, () => {
   if (process.send) process.send('online');
 });
