@@ -7,7 +7,10 @@ module.exports = function (app) {
         .when('/', {
           redirectTo: '/home',
         })
-        .when('/:page', {
+        // .when('/hoa-qua/:page', {
+        //   template: params => '<div r="hoa-qua"></div>',
+        // })
+        .when('/:page*', {
           template: params => `<div r="${params.page}"></div>`,
         });
       $locationProvider.html5Mode(true);

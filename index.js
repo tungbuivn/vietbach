@@ -80,26 +80,11 @@ app.use('/manifest.json', express.static('./manifest.json'));
 app.use('/images', express.static('./images'));
 app.use('/sounds', express.static('./sounds'));
 
-const home = require('./home/index.marko');
+const home = require('./pages/home/index.marko');
 
 app.get('*', (req, res) => {
   home.render({}, res);
 });
-
-const Q = require('q');
-
-function sleep(tm) {
-  return Q.Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, tm);
-  });
-}
-async function doneNhe() {
-  await sleep(5000);
-}
-
-Q.fcall(doneNhe).then(() => console.error('done nhe'));
 
 app.listen(3000, () => {
   if (process.send) process.send('online');
