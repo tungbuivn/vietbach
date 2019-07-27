@@ -10,6 +10,18 @@ module.exports = class {
           key: 'chimbocau',
           title: 'Chim bồ câu',
         },
+        {
+          key: 'concho',
+          title: 'Con chó',
+        },
+        {
+          key: 'concong',
+          title: 'Con công',
+        },
+        {
+          key: 'concuu',
+          title: 'Con cừu',
+        },
       ],
     };
   }
