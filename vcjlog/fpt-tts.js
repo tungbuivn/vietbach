@@ -10,8 +10,8 @@ module.exports = function (request, logger, E) {
   //   console.log(logger);
 
   //   logger.debug('xxxxxxxxxx');
-  async function saveTTS(file, text) {
-    const fileName = `${__dirname}/../sounds/${file}.mp3`;
+  async function saveTTS(fileName, text) {
+    // const fileName = `${__dirname}/../sounds/${file}.mp3`;
     if (fs.existsSync(fileName)) {
       logger.warn(new E(`File ${fileName} da ton tai`));
     } else {

@@ -3,13 +3,15 @@
 require('marko/node-require');
 const lasso = require('lasso');
 const express = require('express');
+const fs = require('fs');
+const Q = require('q');
 
 const lsm = require('lasso-marko');
 const lss = require('lasso-less');
 const lsh = require('lasso-html');
-const { db, logger } = require('./vcjlog');
+const { db, logger, fptApi } = require('./vcjlog');
 
-console.log(__dirname);
+// console.log(__dirname);
 lasso.configure({
   plugins: [
     // Plugin with a default config:
@@ -73,7 +75,57 @@ lasso.configure({
 });
 
 const app = express();
+const lock = {};
+async function createMp3(url) {
+  const data = await Q.fcall(() => {
+    let rs = null;
+    // const { url } = req;
+    // console.error(req.url);
+    if (url.match(/\/sounds\//)) {
+      const fileName = `${__dirname}/${url}`;
+      if (!fs.existsSync(fileName)) {
+        const key = url.split('/');
+        const k = key[key.length - 1].split('.mp3')[0];
+        rs = { key: k, fileName };
+        if (!lock[rs.key]) {
+          logger.debug('locking data', rs);
+          lock[rs.key] = true;
+        } else {
+          rs = null;
+        }
+      }
+    }
 
+    return rs;
+  });
+  if (data) {
+    await Q.fcall(async () => {
+      const fn = db
+        .read()
+        .filter((e) => {
+          if (db.isArray(e)) {
+            // console.log(e);
+            return e;
+          }
+          // console.log(e);
+          return null;
+        })
+        .value();
+
+      const qq = [].concat.apply([], fn);
+      const found = qq.filter(o => o.key == data.key);
+      if (found) {
+        await fptApi.saveTTS(data.fileName, found[0].title);
+      }
+    });
+    lock[data.key] = false;
+  }
+}
+
+app.use(async (req, res, next) => {
+  await createMp3(req.url);
+  next();
+});
 // app.use(markoExpress()); //enable res.marko(template, data)
 app.use(require('lasso/middleware').serveStatic());
 
