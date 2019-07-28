@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const chrome = require('chrome-dev-sync');
 
 chrome({
@@ -6,5 +7,5 @@ chrome({
   setup: (self) => {
     self.ignore([/static/, /\.cache/, /^data/, /\.marko\.js/]);
     return Promise.resolve();
-  },
+  }
 });

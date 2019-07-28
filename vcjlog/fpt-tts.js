@@ -5,6 +5,7 @@
 // -H 'voice: banmai' \
 // -d '{"text":"con bò"}'
 const fs = require('fs');
+const Q = require('q');
 
 module.exports = function (request, logger, E) {
   //   console.log(logger);
@@ -21,15 +22,20 @@ module.exports = function (request, logger, E) {
         headers: {
           api_key: 'CGKVjIKUVIu83LRC6c0iIs6cWLdTJJw4',
           speed: '0',
-          voice: 'banmai',
+          voice: 'banmai'
         },
-        body: JSON.stringify(text),
+        body: JSON.stringify(text)
         // encoding: null,
       })
         .catch((e) => {
           throw new E('Lỗi request fpt api', e);
         })
         .then(ars => JSON.parse(ars))
+        .then(() => Q.Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000);
+          }))
         .then(js => request({ uri: js.async, encoding: null }))
         .catch((e) => {
           logger.error(new E('Lỗi khi sinh text', e));
@@ -43,6 +49,6 @@ module.exports = function (request, logger, E) {
     }
   }
   return {
-    saveTTS,
+    saveTTS
   };
 };
