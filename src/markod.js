@@ -2,13 +2,15 @@
 const home = require('../components/home');
 const hoaqua = require('../components/hoa-qua');
 const share = require('../components/share');
+const list = require('../components/list');
 const dongvat = require('../components/dong-vat');
 
 module.exports = function (app) {
   app.factory('marko', [
     '$location',
     '$q',
-    ($location, $q) => {
+    '$http',
+    ($location, $q, $http) => {
       const q = $q.defer();
       q.promise.then(angular.noop, angular.noop, (data) => {
         switch (data.cmd) {
@@ -39,12 +41,16 @@ module.exports = function (app) {
         path(href) {
           execute({ cmd: 'path', data: href });
         },
+        getData(name) {
+          return $http.get(`/data/${name}`).then(rs => rs.data);
+        },
       });
       global.cmd = (data) => {
         q.notify(data);
       };
       return {
         home,
+        list,
         'hoa-qua': hoaqua,
         'dong-vat': dongvat,
       };

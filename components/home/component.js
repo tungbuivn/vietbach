@@ -3,14 +3,14 @@ module.exports = class {
     this.state = {
       list: [
         {
-          title: 'Hoa quả 1',
+          title: 'Hoa quả',
           img: '/images/quacam.png',
-          href: '/hoa-qua/1',
+          href: '/list/thucvat',
         },
         {
-          title: 'Động vật 1',
+          title: 'Động vật',
           img: '/images/conmeo.png',
-          href: '/dong-vat/1',
+          href: '/list/dongvat',
         },
       ],
     };

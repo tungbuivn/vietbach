@@ -6,6 +6,7 @@ const express = require('express');
 const lsm = require('lasso-marko');
 const lss = require('lasso-less');
 const lsh = require('lasso-html');
+const { db, logger } = require('vcjlog');
 
 lasso.configure({
   plugins: [
@@ -82,6 +83,15 @@ app.use('/sounds', express.static('./sounds'));
 
 const home = require('./pages/home/index.marko');
 
+app.get('/data/:type', (req, res) => {
+  logger.debug(`request data type ${req.params.type}`);
+  const data = db.get(req.params.type).value();
+  if (data) {
+    res.json(data);
+  } else {
+    res.json([]);
+  }
+});
 app.get('*', (req, res) => {
   home.render({}, res);
 });

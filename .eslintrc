@@ -3,7 +3,8 @@
   "globals": {
     "angular": true,
     "document": true,
-    "Howl": true
+    "Howl": true,
+    "location": true
   },
   "rules": {
     "func-names": 0,
