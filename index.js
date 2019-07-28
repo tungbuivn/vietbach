@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-global.rootDir = __dirname;
+// global.rootDir = __dirname;
 require('marko/node-require');
 const lasso = require('lasso');
 const express = require('express');
@@ -7,8 +7,9 @@ const express = require('express');
 const lsm = require('lasso-marko');
 const lss = require('lasso-less');
 const lsh = require('lasso-html');
-const { db, logger } = require('vcjlog');
+const { db, logger } = require('./vcjlog');
 
+console.log(__dirname);
 lasso.configure({
   plugins: [
     // Plugin with a default config:

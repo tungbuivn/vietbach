@@ -17,5 +17,5 @@ bottle.value('request', request);
 bottle.service('fptApi', fptApi, 'request', 'logger', 'E');
 bottle.service('db', db, 'root');
 bottle.value('app', {});
-bottle.value('root', `${global.rootDir}`);
+bottle.value('root', `${__dirname}/..`);
 module.exports = bottle.container;

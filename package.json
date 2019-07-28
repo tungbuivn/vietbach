@@ -37,7 +37,6 @@
     "pug": "^2.0.4",
     "q": "^1.5.1",
     "request-promise": "^4.2.4",
-    "vcjlog": "file:vcjlog",
     "winston": "^3.2.1"
   }
 }
