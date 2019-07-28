@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+global.rootDir = __dirname;
 require('marko/node-require');
 const lasso = require('lasso');
 const express = require('express');
