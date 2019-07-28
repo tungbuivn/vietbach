@@ -8,7 +8,7 @@ module.exports = class {
       count: 0,
       sound: null,
       words: [],
-      isPlaying: false,
+      isPlaying: false
     };
   }
 
@@ -44,20 +44,26 @@ module.exports = class {
     const me = this;
     if (me.isPlaying) return;
     me.isPlaying = true;
+    let q = Q.defer();
     // me.count = 0;
     if (!me.sound) {
       me.state.sound = new Howl({
         src: [this.input.audio],
         autoplay: true,
         usingWebAudio: false,
-        html5: true,
+        html5: true
+      });
+      me.state.sound.once('load', () => {
+        q.resolve();
       });
     } else {
       me.state.sound.play();
+      q.resolve();
     }
-
-    this.loopWords([].concat(this.state.words)).then(() => {
-      me.isPlaying = false;
+    q.promise.then(() => {
+      me.loopWords([].concat(me.state.words)).then(() => {
+        me.isPlaying = false;
+      });
     });
 
     // console.log('XXXXXXXXXXXXXXXXX', me.count);

@@ -16,25 +16,25 @@ module.exports = function (request, logger, E) {
     if (fs.existsSync(fileName)) {
       logger.warn(new E(`File ${fileName} da ton tai`));
     } else {
-      const rs = await request({
-        uri: 'https://api.fpt.ai/hmi/tts/v5',
-        method: 'POST',
-        headers: {
-          api_key: 'CGKVjIKUVIu83LRC6c0iIs6cWLdTJJw4',
-          speed: '0',
-          voice: 'banmai'
-        },
-        body: JSON.stringify(text)
-        // encoding: null,
-      })
+      const rs = await Q.fcall(() => request({
+          uri: 'https://api.fpt.ai/hmi/tts/v5',
+          method: 'POST',
+          headers: {
+            api_key: 'CGKVjIKUVIu83LRC6c0iIs6cWLdTJJw4',
+            speed: '0',
+            voice: 'banmai'
+          },
+          body: JSON.stringify(text)
+          // encoding: null,
+        }))
         .catch((e) => {
           throw new E('Lỗi request fpt api', e);
         })
         .then(ars => JSON.parse(ars))
-        .then(() => Q.Promise((resolve) => {
+        .then(js => Q.Promise((resolve) => {
             setTimeout(() => {
-              resolve();
-            }, 1000);
+              resolve(js);
+            }, 2000);
           }))
         .then(js => request({ uri: js.async, encoding: null }))
         .catch((e) => {

@@ -47,6 +47,22 @@
     {
       "key": "convit",
       "title": "Con vịt"
+    },
+    {
+      "key": "conbo",
+      "title": "Con bò"
+    },
+    {
+      "key": "gautruc",
+      "title": "Con gấu trúc"
+    },
+    {
+      "key": "consutu",
+      "title": "Con sư tử"
+    },
+    {
+      "key": "conho",
+      "title": "Con hổ"
     }
   ],
   "thucvat": [
