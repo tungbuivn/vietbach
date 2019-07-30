@@ -65,6 +65,48 @@
       "title": "Con hổ"
     }
   ],
+  "conso": [
+    {
+      "key": "khong",
+      "title": "Không"
+    },
+    {
+      "key": "mot",
+      "title": "Một"
+    },
+    {
+      "key": "hai",
+      "title": "Hai"
+    },
+    {
+      "key": "ba",
+      "title": "Ba"
+    },
+    {
+      "key": "bon",
+      "title": "Bốn"
+    },
+    {
+      "key": "nam",
+      "title": "Năm"
+    },
+    {
+      "key": "sau",
+      "title": "Sáu"
+    },
+    {
+      "key": "bay",
+      "title": "Bảy"
+    },
+    {
+      "key": "tam",
+      "title": "Tám"
+    },
+    {
+      "key": "chin",
+      "title": "Chín"
+    }
+  ],
   "thucvat": [
     {
       "key": "quaroi",

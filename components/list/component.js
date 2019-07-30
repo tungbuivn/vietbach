@@ -2,8 +2,9 @@ const share = require('../share');
 
 module.exports = class {
   onCreate() {
+    share.title.next('Tập đọc cho bé');
     this.state = {
-      list: [],
+      list: []
     };
     // console.log('create');
   }

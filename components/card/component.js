@@ -44,7 +44,7 @@ module.exports = class {
     const me = this;
     if (me.isPlaying) return;
     me.isPlaying = true;
-    let q = Q.defer();
+    const q = Q.defer();
     // me.count = 0;
     if (!me.sound) {
       me.state.sound = new Howl({

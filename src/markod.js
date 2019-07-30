@@ -4,6 +4,7 @@ const hoaqua = require('../components/hoa-qua');
 const share = require('../components/share');
 const list = require('../components/list');
 const dongvat = require('../components/dong-vat');
+const admin = require('../components/admin');
 
 module.exports = function (app) {
   app.factory('marko', [
@@ -31,8 +32,8 @@ module.exports = function (app) {
           Object.assign({}, data, {
             function() {
               q1.resolve();
-            },
-          }),
+            }
+          })
         );
 
         return q1.promise;
@@ -43,7 +44,7 @@ module.exports = function (app) {
         },
         getData(name) {
           return $http.get(`/data/${name}`).then(rs => rs.data);
-        },
+        }
       });
       global.cmd = (data) => {
         q.notify(data);
@@ -51,9 +52,9 @@ module.exports = function (app) {
       return {
         home,
         list,
-        'hoa-qua': hoaqua,
-        'dong-vat': dongvat,
+
+        admin
       };
-    },
+    }
   ]);
 };
