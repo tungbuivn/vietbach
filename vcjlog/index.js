@@ -15,6 +15,7 @@ bottle.value('logger', logger);
 bottle.value('E', NewError);
 bottle.value('request', request);
 bottle.service('fptApi', fptApi, 'request', 'logger', 'E');
+bottle.service('vtApi', fptApi, 'request', 'logger', 'E');
 bottle.service('db', db, 'root');
 bottle.value('app', {});
 bottle.value('root', `${__dirname}/..`);

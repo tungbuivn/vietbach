@@ -9,7 +9,9 @@ const Q = require('q');
 const lsm = require('lasso-marko');
 const lss = require('lasso-less');
 const lsh = require('lasso-html');
-const { db, logger, fptApi } = require('./vcjlog');
+const {
+ db, logger, fptApi, vtApi 
+} = require('./vcjlog');
 
 // console.log(__dirname);
 lasso.configure({
@@ -19,7 +21,7 @@ lasso.configure({
     // require("lasso-sass"),
     lsm,
     lss,
-    lsh,
+    lsh
     // require("./lasso-babel")
   ],
   // The base output directory for generated bundles
@@ -69,9 +71,9 @@ lasso.configure({
   bundles: [
     {
       name: 'app',
-      dependencies: ['require:./src/**/*.*', 'require:./components/**/*.*'],
-    },
-  ],
+      dependencies: ['require:./src/**/*.*', 'require:./components/**/*.*']
+    }
+  ]
 });
 
 const app = express();
@@ -115,7 +117,7 @@ async function createMp3(url) {
       const qq = [].concat.apply([], fn);
       const found = qq.filter(o => o.key == data.key);
       if (found) {
-        await fptApi.saveTTS(data.fileName, found[0].title);
+        await vtApi.saveTTS(data.fileName, found[0].title);
       }
     });
     lock[data.key] = false;
