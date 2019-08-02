@@ -11,6 +11,7 @@ module.exports = function (request, logger, E) {
           uri: 'https://vtcc.ai/voice/api/tts/v1/rest/syn',
           method: 'POST',
           headers: {
+            'Content-type': 'application/json',
             token:
               '99MheNoiEUOZI7L-h4FYCW3OzKCCP4IG9tDEuXjsqRxu-4LN2-D-G9CU-TzCJqXb'
           },
@@ -19,14 +20,19 @@ module.exports = function (request, logger, E) {
             voice: 'doanngocle',
             id: '0',
             without_filter: false,
-            speed: 1.0,
+            speed: 0.7,
             tts_return_option: 3
           }),
           encoding: null
-        })).catch((e) => {
-        logger.error(new E('Lỗi khi sinh text', e));
-        return null;
-      });
+        }))
+        // .then((ars) => {
+        //   console.log(ars);
+        //   throw new E('xxxxxxxxxxxx');
+        // })
+        .catch((e) => {
+          logger.error(new E('Lỗi khi sinh text', e));
+          return null;
+        });
       if (rs) {
         // console.log(rs);
         fs.writeFileSync(fileName, rs);

@@ -9,9 +9,7 @@ const Q = require('q');
 const lsm = require('lasso-marko');
 const lss = require('lasso-less');
 const lsh = require('lasso-html');
-const {
- db, logger, fptApi, vtApi 
-} = require('./vcjlog');
+const { db, logger, speechApi } = require('./vcjlog');
 
 // console.log(__dirname);
 lasso.configure({
@@ -117,7 +115,7 @@ async function createMp3(url) {
       const qq = [].concat.apply([], fn);
       const found = qq.filter(o => o.key == data.key);
       if (found) {
-        await vtApi.saveTTS(data.fileName, found[0].title);
+        await speechApi.saveTTS(data.fileName, found[0].title);
       }
     });
     lock[data.key] = false;
