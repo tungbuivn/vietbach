@@ -21,7 +21,7 @@ lasso.configure({
     lss,
     lsh
     // require("./lasso-babel")
-  ],
+  ], 
   // The base output directory for generated bundles
   outputDir: 'static',
 
